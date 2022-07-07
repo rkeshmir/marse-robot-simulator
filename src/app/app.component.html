@@ -1,0 +1,29 @@
+<div class="main">
+  <h1>Mars Robot Simulator</h1>
+  <div class="place">
+    <label>
+      X <input [value]="placeObject.x" (change)="updatePlace($event, 'x')" type="number" min="0" max="4">
+    </label>
+    <label>
+      Y <input [value]="placeObject.y" (change)="updatePlace($event, 'y')" type="number" min="0" max="4">
+    </label>
+    <label>
+      Direction <select [value]="placeObject.direction" (change)="updatePlace($event, 'direction')">
+      <option [value]="DIRECTION.NORTH">North</option>
+      <option [value]="DIRECTION.EAST">East</option>
+      <option [value]="DIRECTION.SOUTH">South</option>
+      <option [value]="DIRECTION.WEST">West</option>
+    </select>
+    </label>
+    <button #placeBtn type="button" (click)="handlePlace(placeBtn)">Place</button>
+  </div>
+  <div class="board">
+    <div class="row" *ngFor="let row of dimension">
+      <div class="cell {{row % 2 === cell % 2 ? 'blue' : ''}}" *ngFor="let cell of dimension"
+      title="{{row}} - {{cell}}">
+        <img class="bot {{dirClass[state.direction]}} {{commandsStack.length ? '' : 'blur'}}" src="assets/bot.webp" alt="BOT" *ngIf="state.x === cell && state.y === row">
+      </div>
+    </div>
+  </div>
+
+</div>
